@@ -46,21 +46,24 @@
         }
         
         .logo {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: bold;
             color: white;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            flex-shrink: 0;
+            width: 100px;
         }
         
-        .logo i {
-            font-size: 24px;
+        .logo img {
+            width: 20px !important;
+            height: 20px !important;
         }
         
         .search-box {
-            flex: 1;
-            margin: 0 16px;
+            flex: 2;
+            margin: 0 12px;
             position: relative;
         }
         
@@ -1147,10 +1150,10 @@
                     carouselInner.style.transform = `translateX(${currentTranslate}px)`;
                     setTimeout(() => {
                         carouselInner.style.transition = '';
+                        // 重新开始自动轮播
+                        startSlideInterval();
                     }, 300);
                 }
-                // 重新开始自动轮播
-                startSlideInterval();
             }
         }
 
