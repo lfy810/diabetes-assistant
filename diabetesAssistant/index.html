@@ -1092,18 +1092,37 @@
         // 添加滑动事件处理
         function initSwipeEvents() {
             const carouselContainer = document.querySelector('.carousel-container');
-            let startX, endX;
+            const carouselInner = document.querySelector('.carousel-inner');
+            let startX, endX, isDragging = false, currentTranslate = 0;
             
             carouselContainer.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
+                isDragging = true;
+                // 暂停自动轮播
+                clearInterval(slideInterval);
+                // 获取当前的transform值
+                const style = window.getComputedStyle(carouselInner);
+                const transform = style.transform;
+                if (transform !== 'none') {
+                    const matrix = new DOMMatrix(transform);
+                    currentTranslate = matrix.e;
+                } else {
+                    currentTranslate = 0;
+                }
             });
             
             carouselContainer.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
                 e.preventDefault(); // 防止页面滚动
                 endX = e.touches[0].clientX;
+                const diff = startX - endX;
+                // 实时更新轮播图位置
+                carouselInner.style.transform = `translateX(${currentTranslate - diff}px)`;
             });
             
             carouselContainer.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
                 endX = e.changedTouches[0].clientX;
                 handleSwipe();
             });
@@ -1111,6 +1130,7 @@
             function handleSwipe() {
                 const swipeThreshold = 50; // 滑动阈值
                 const diff = startX - endX;
+                const carouselWidth = carouselContainer.offsetWidth;
                 
                 if (Math.abs(diff) > swipeThreshold) {
                     if (diff > 0) {
@@ -1120,7 +1140,16 @@
                         // 向右滑动，上一张
                         changeSlide(-1);
                     }
+                } else {
+                    // 滑动距离不够，回弹到原位置
+                    carouselInner.style.transition = 'transform 0.3s ease';
+                    carouselInner.style.transform = `translateX(${currentTranslate}px)`;
+                    setTimeout(() => {
+                        carouselInner.style.transition = '';
+                    }, 300);
                 }
+                // 重新开始自动轮播
+                startSlideInterval();
             }
         }
 
