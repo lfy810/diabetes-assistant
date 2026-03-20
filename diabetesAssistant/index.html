@@ -120,13 +120,12 @@
         
         /* 轮播图 */
         .carousel-container {
-            height: 250px;
+            height: 220px;
             margin: 16px 16px;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            background-color: #0369a1;
         }
         
         .carousel {
@@ -247,7 +246,24 @@
         .section-title {
             font-size: 18px;
             font-weight: 600;
-            color: #1e293b;
+            color: #0369a1;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(3, 105, 161, 0.1), rgba(14, 165, 233, 0.1));
+            border-radius: 12px;
+            border: 1px solid rgba(3, 105, 161, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #0369a1, #0ea5e9);
+            border-radius: 12px 0 0 12px;
         }
         
         /* 更多按钮 */
@@ -1076,14 +1092,19 @@
         
         // 添加滑动事件处理
         function initSwipeEvents() {
-            const carousel = document.querySelector('.carousel');
+            const carouselContainer = document.querySelector('.carousel-container');
             let startX, endX;
             
-            carousel.addEventListener('touchstart', (e) => {
+            carouselContainer.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
             });
             
-            carousel.addEventListener('touchend', (e) => {
+            carouselContainer.addEventListener('touchmove', (e) => {
+                e.preventDefault(); // 防止页面滚动
+                endX = e.touches[0].clientX;
+            });
+            
+            carouselContainer.addEventListener('touchend', (e) => {
                 endX = e.changedTouches[0].clientX;
                 handleSwipe();
             });
