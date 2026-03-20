@@ -67,6 +67,13 @@ class PageTransition {
                 }
             }
         });
+        
+        // 监听浏览器后退/前进按钮
+        window.addEventListener('popstate', () => {
+            // 页面返回时移除转场动画
+            this.transitionElement.classList.remove('active');
+            document.body.classList.add('page-loaded');
+        });
     }
 
     navigateTo(url) {

@@ -3,310 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>搜索结果</title>
+    <title>搜索结果 - 糖尿病预治智能助手</title>
+    <meta name="description" content="糖尿病相关内容搜索结果，包括文章、医师团队、糖尿病类型等信息">
+    <meta name="keywords" content="糖尿病搜索,糖尿病内容搜索,搜索结果">
+    <meta name="author" content="糖尿病预治智能助手">
+    <link rel="preconnect" href="https://static.mastergo.com">
     <link rel="stylesheet" href="https://static.mastergo.com/static/ai/resource/html/googleapis/css2">
     <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/transition.css">
+    <link rel="preload" href="css/transition.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:linear-gradient(135deg,#f0f9ff 0%,#e0f2fe 50%,#f8fafc 100%);color:#1e293b;line-height:1.6}
+.container{max-width:750px;margin:0 auto;background:#fff;min-height:100vh;padding-bottom:70px;box-shadow:0 0 30px rgba(0,0,0,0.05);border-radius:0 0 20px 20px}
+/* 顶部导航栏 */
+.top-bar{background:linear-gradient(135deg,#0369a1,#0ea5e9);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(3,105,161,0.2);position:sticky;top:0;z-index:100}
+.back-btn{color:#fff;font-size:20px;cursor:pointer}
+.page-title{font-size:18px;font-weight:bold;color:#fff}
+.search-btn{color:#fff;font-size:20px;cursor:pointer}
         
-        body {
-            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f8fafc 100%);
-            color: #1e293b;
-            line-height: 1.6;
-        }
+/* 搜索框 */
+.search-container{padding:20px 24px;background:linear-gradient(135deg,#f8fafc,#f0f9ff);border-bottom:1px solid rgba(3,105,161,0.1);position:sticky;top:70px;z-index:50}
+.search-box{display:flex;align-items:center;background:#fff;border-radius:24px;padding:10px 20px;border:1px solid rgba(3,105,161,0.1);box-shadow:0 4px 16px rgba(0,0,0,0.05)}
+.search-box i{color:#0ea5e9;margin-right:12px;font-size:16px}
+.search-box input{flex:1;border:none;outline:none;font-size:14px;color:#0369a1;font-weight:500}
+.search-box input::placeholder{color:#94a3b8}
         
-        .container {
-            max-width: 750px;
-            margin: 0 auto;
-            background: white;
-            min-height: 100vh;
-            padding-bottom: 70px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
-            border-radius: 0 0 20px 20px;
-        }
+/* 搜索建议 */
+.search-suggestions{position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:0 0 12px 12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);margin-top:4px;max-height:200px;overflow-y:auto;z-index:1000;display:none}
+.suggestion-item{padding:12px 16px;font-size:14px;color:#1e293b;cursor:pointer;border-bottom:1px solid #f1f5f9}
+.suggestion-item:last-child{border-bottom:none}
+.suggestion-item:active{background:#f8fafc}
         
-        /* 顶部导航栏 */
-        .top-bar {
-            background: linear-gradient(135deg, #0369a1, #0ea5e9);
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(3, 105, 161, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+/* 搜索结果 */
+.search-results{padding:20px}
+.search-summary{font-size:14px;color:#64748b;margin-bottom:20px}
+.result-section{margin-bottom:24px}
+.section-title{font-size:16px;font-weight:600;color:#1e293b;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-title i{color:#3b82f6}
         
-        .back-btn {
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
+.result-item{display:flex;gap:16px;padding:20px;background:linear-gradient(135deg,#fff,#f8fafc);border-radius:16px;margin-bottom:16px;cursor:pointer;transition:all .3s ease;border:1px solid rgba(3,105,161,0.1);box-shadow:0 4px 20px rgba(0,0,0,0.05);position:relative;overflow:hidden}
+.result-item::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,#0369a1,#0ea5e9);opacity:0;transition:opacity .3s ease}
+.result-item:active{transform:translateY(-4px);box-shadow:0 12px 32px rgba(3,105,161,0.15);border-color:#0ea5e9}
+.result-item:active::before{opacity:1}
         
-        .page-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-        }
+.result-image{width:70px;height:70px;border-radius:12px;overflow:hidden;flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,0.1)}
+.result-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.result-item:active .result-image img{transform:scale(1.05)}
+.result-content{flex:1}
+.result-title{font-size:15px;font-weight:600;color:#0369a1;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+.result-meta{font-size:13px;color:#475569;display:flex;align-items:center;gap:16px;font-weight:500}
         
-        .search-btn {
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
+/* 医师结果 */
+.doctor-result .result-image{border-radius:50%}
+/* 无结果 */
+.no-results{text-align:center;padding:40px 20px;color:#64748b}
+.no-results i{font-size:48px;color:#cbd5e1;margin-bottom:16px}
+.no-results h3{font-size:16px;font-weight:500;margin-bottom:8px}
+.no-results p{font-size:14px}
         
-        /* 搜索框 */
-        .search-container {
-            padding: 20px 24px;
-            background: linear-gradient(135deg, #f8fafc, #f0f9ff);
-            border-bottom: 1px solid rgba(3, 105, 161, 0.1);
-            position: sticky;
-            top: 70px;
-            z-index: 50;
-        }
-        
-        .search-box {
-            display: flex;
-            align-items: center;
-            background: white;
-            border-radius: 24px;
-            padding: 10px 20px;
-            border: 1px solid rgba(3, 105, 161, 0.1);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-        }
-        
-        .search-box i {
-            color: #0ea5e9;
-            margin-right: 12px;
-            font-size: 16px;
-        }
-        
-        .search-box input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 14px;
-            color: #0369a1;
-            font-weight: 500;
-        }
-        
-        .search-box input::placeholder {
-            color: #94a3b8;
-        }
-        
-        /* 搜索建议 */
-        .search-suggestions {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-top: 4px;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000;
-            display: none;
-        }
-        
-        .suggestion-item {
-            padding: 12px 16px;
-            font-size: 14px;
-            color: #1e293b;
-            cursor: pointer;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        
-        .suggestion-item:last-child {
-            border-bottom: none;
-        }
-        
-        .suggestion-item:hover {
-            background: #f8fafc;
-        }
-        
-        /* 搜索结果 */
-        .search-results {
-            padding: 20px;
-        }
-        
-        .search-summary {
-            font-size: 14px;
-            color: #64748b;
-            margin-bottom: 20px;
-        }
-        
-        .result-section {
-            margin-bottom: 24px;
-        }
-        
-        .section-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .section-title i {
-            color: #3b82f6;
-        }
-        
-        .result-item {
-            display: flex;
-            gap: 16px;
-            padding: 20px;
-            background: linear-gradient(135deg, #ffffff, #f8fafc);
-            border-radius: 16px;
-            margin-bottom: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(3, 105, 161, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .result-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, #0369a1, #0ea5e9);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .result-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(3, 105, 161, 0.15);
-            border-color: #0ea5e9;
-        }
-        
-        .result-item:hover::before {
-            opacity: 1;
-        }
-        
-        .result-image {
-            width: 70px;
-            height: 70px;
-            border-radius: 12px;
-            overflow: hidden;
-            flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-        
-        .result-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .result-item:hover .result-image img {
-            transform: scale(1.05);
-        }
-        
-        .result-content {
-            flex: 1;
-        }
-        
-        .result-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: #0369a1;
-            margin-bottom: 6px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-height: 1.5;
-        }
-        
-        .result-meta {
-            font-size: 13px;
-            color: #475569;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-weight: 500;
-        }
-        
-        /* 医师结果 */
-        .doctor-result .result-image {
-            border-radius: 50%;
-        }
-        
-        /* 无结果 */
-        .no-results {
-            text-align: center;
-            padding: 40px 20px;
-            color: #64748b;
-        }
-        
-        .no-results i {
-            font-size: 48px;
-            color: #cbd5e1;
-            margin-bottom: 16px;
-        }
-        
-        .no-results h3 {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-        
-        .no-results p {
-            font-size: 14px;
-        }
-        
-        /* 底部导航 */
-        .tab-bar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 750px;
-            height: 64px;
-            background: white;
-            border-top: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 100;
-        }
-        
-        .tab-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            font-size: 12px;
-            color: #64748b;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        
-        .tab-item.active {
-            background: rgba(59, 130, 246, 0.1);
-            color: #3b82f6;
-        }
-        
-        .tab-item i {
-            font-size: 20px;
-        }
+/* 底部导航 */
+.tab-bar{position:fixed;bottom:0;width:100%;max-width:750px;height:64px;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;align-items:center;z-index:100}
+.tab-item{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:#64748b;padding:8px 16px;border-radius:8px;transition:all .2s}
+.tab-item.active{background:rgba(59,130,246,0.1);color:#3b82f6}
+.tab-item i{font-size:20px}
     </style>
 </head>
 <body>
@@ -395,91 +154,7 @@
     </nav>
     
     <script>
-        // 搜索数据
-        const searchData = {
-            articles: [
-                {
-                    id: 1,
-                    title: '糖尿病患者的饮食管理指南',
-                    author: '王建国',
-                    date: '2024-01-15',
-                    image: 'img/a1.jpg',
-                    url: 'article.html'
-                },
-                {
-                    id: 2,
-                    title: '适合糖尿病患者的运动方式',
-                    author: '张伟明',
-                    date: '2024-01-10',
-                    image: 'img/a2.jpg',
-                    url: 'exercise.html'
-                },
-                {
-                    id: 3,
-                    title: '血糖监测的正确方法',
-                    author: '李雅琴',
-                    date: '2024-01-08',
-                    image: 'img/a3.jpg',
-                    url: 'glucose-monitoring.html'
-                }
-            ],
-            doctors: [
-                {
-                    id: 1,
-                    name: '张伟明',
-                    title: '主任医师',
-                    hospital: '北京协和医院',
-                    image: 'img/doc1.jpg',
-                    url: 'doctor-zhang.html'
-                },
-                {
-                    id: 2,
-                    name: '李雅琴',
-                    title: '副主任医师',
-                    hospital: '北京协和医院',
-                    image: 'img/doc2.png',
-                    url: 'doctor-li.html'
-                },
-                {
-                    id: 3,
-                    name: '王建国',
-                    title: '主治医师',
-                    hospital: '北京协和医院',
-                    image: 'img/doc3.png',
-                    url: 'doctor-wang.html'
-                }
-            ],
-            types: [
-                {
-                    id: 1,
-                    name: '1型糖尿病',
-                    desc: '胰岛素依赖型糖尿病',
-                    image: 'img/tnb1.png',
-                    url: 'type1.html'
-                },
-                {
-                    id: 2,
-                    name: '2型糖尿病',
-                    desc: '最常见的糖尿病类型',
-                    image: 'img/tnb2.png',
-                    url: 'type2.html'
-                },
-                {
-                    id: 3,
-                    name: '妊娠糖尿病',
-                    desc: '孕期发生的血糖异常',
-                    image: 'img/tnb3.png',
-                    url: 'type-pregnancy.html'
-                },
-                {
-                    id: 4,
-                    name: '其他类型糖尿病',
-                    desc: '特殊类型的糖尿病',
-                    image: 'img/tnb4.png',
-                    url: 'type-other.html'
-                }
-            ]
-        };
+        // 搜索数据将从数据服务获取
         
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
@@ -578,48 +253,54 @@
         });
         
         // 执行搜索
-        function performSearch(keyword) {
+        async function performSearch(keyword) {
             keyword = keyword.toLowerCase();
             
-            // 搜索文章
-            const articleResults = searchData.articles.filter(article => 
-                article.title.toLowerCase().includes(keyword) || 
-                article.author.toLowerCase().includes(keyword)
-            );
-            
-            // 搜索医师
-            const doctorResults = searchData.doctors.filter(doctor => 
-                doctor.name.toLowerCase().includes(keyword) || 
-                doctor.title.toLowerCase().includes(keyword) ||
-                doctor.hospital.toLowerCase().includes(keyword)
-            );
-            
-            // 搜索糖尿病类型
-            const typeResults = searchData.types.filter(type => 
-                type.name.toLowerCase().includes(keyword) || 
-                type.desc.toLowerCase().includes(keyword)
-            );
-            
-            // 更新结果计数
-            const totalResults = articleResults.length + doctorResults.length + typeResults.length;
-            document.getElementById('resultCount').textContent = totalResults;
-            
-            // 显示或隐藏无结果提示
-            const noResults = document.getElementById('noResults');
-            if (totalResults === 0) {
-                noResults.style.display = 'block';
-            } else {
-                noResults.style.display = 'none';
+            try {
+                // 从数据服务获取搜索数据（优先从缓存读取）
+                const searchData = await dataService.getSearchData();
+                
+                // 搜索文章
+                const articleResults = searchData.articles.filter(article => 
+                    article.title.toLowerCase().includes(keyword) || 
+                    article.author.toLowerCase().includes(keyword)
+                );
+                
+                // 搜索医师
+                const doctorResults = searchData.doctors.filter(doctor => 
+                    doctor.name.toLowerCase().includes(keyword) || 
+                    doctor.title.toLowerCase().includes(keyword)
+                );
+                
+                // 搜索糖尿病类型
+                const typeResults = searchData.types.filter(type => 
+                    type.name.toLowerCase().includes(keyword)
+                );
+                
+                // 更新结果计数
+                const totalResults = articleResults.length + doctorResults.length + typeResults.length;
+                document.getElementById('resultCount').textContent = totalResults;
+                
+                // 显示或隐藏无结果提示
+                const noResults = document.getElementById('noResults');
+                if (totalResults === 0) {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+                
+                // 显示文章结果
+                displayArticleResults(articleResults);
+                
+                // 显示医师结果
+                displayDoctorResults(doctorResults);
+                
+                // 显示糖尿病类型结果
+                displayTypeResults(typeResults);
+            } catch (error) {
+                console.error('搜索数据获取失败:', error);
+                document.getElementById('noResults').style.display = 'block';
             }
-            
-            // 显示文章结果
-            displayArticleResults(articleResults);
-            
-            // 显示医师结果
-            displayDoctorResults(doctorResults);
-            
-            // 显示糖尿病类型结果
-            displayTypeResults(typeResults);
         }
         
         // 显示文章结果
@@ -761,6 +442,7 @@
             });
         }
     </script>
+    <script src="js/cacheManager.js"></script>
     <script src="js/transition.js"></script>
 </body>
 </html>

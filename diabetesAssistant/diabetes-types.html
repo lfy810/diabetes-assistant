@@ -3,245 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>糖尿病类型介绍</title>
+    <title>糖尿病类型介绍 - 糖尿病预治智能助手</title>
+    <meta name="description" content="糖尿病类型介绍，包括1型糖尿病、2型糖尿病、妊娠糖尿病和其他特殊类型糖尿病的详细说明">
+    <meta name="keywords" content="糖尿病类型,1型糖尿病,2型糖尿病,妊娠糖尿病,特殊类型糖尿病">
+    <meta name="author" content="糖尿病预治智能助手">
+    <link rel="preconnect" href="https://static.mastergo.com">
     <link rel="stylesheet" href="https://static.mastergo.com/static/ai/resource/html/googleapis/css2">
     <link rel="stylesheet" href="css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:#f8fafc;color:#333;line-height:1.6}
+.container{max-width:750px;margin:0 auto;background:#fff;min-height:100vh;padding-bottom:64px}
         
-        body {
-            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f8fafc;
-            color: #333;
-            line-height: 1.6;
-        }
+/* 顶部导航栏 */
+.top-bar{background:linear-gradient(135deg,#3b82f6,#60a5fa);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(59,130,246,0.1);position:sticky;top:0;z-index:100}
+.back-btn{color:#fff;font-size:20px;cursor:pointer}
+.page-title{font-size:18px;font-weight:bold;color:#fff}
+.share-btn{color:#fff;font-size:20px;cursor:pointer}
         
-        .container {
-            max-width: 750px;
-            margin: 0 auto;
-            background: white;
-            min-height: 100vh;
-            padding-bottom: 64px;
-        }
+/* 内容区域 */
+.content{padding:20px}
+.main-title{font-size:24px;font-weight:700;color:#1e293b;margin-bottom:24px;text-align:center}
+/* 类型卡片 */
+.type-card{background:#fff;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.05);border:1px solid #f1f5f9}
+.type-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.type-image{width:80px;height:80px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.type-image img{width:100%;height:100%;object-fit:cover}
+.type-info h2{font-size:20px;font-weight:600;color:#1e293b;margin-bottom:4px}
+.type-info p{font-size:14px;color:#64748b}
         
-        /* 顶部导航栏 */
-        .top-bar {
-            background: linear-gradient(135deg, #3b82f6, #60a5fa);
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+/* 内容区块 */
+.content-section{margin-bottom:24px}
+.section-title{font-size:16px;font-weight:600;color:#3b82f6;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-title i{font-size:14px}
+.section-content{font-size:14px;color:#475569;line-height:1.7}
+.section-content p{margin-bottom:12px}
+.section-content ul{margin:12px 0;padding-left:20px}
+.section-content li{margin-bottom:8px}
         
-        .back-btn {
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
+/* 特征标签 */
+.feature-tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.tag{padding:6px 12px;background:rgba(59,130,246,0.1);color:#3b82f6;border-radius:16px;font-size:12px;font-weight:500}
+/* 底部导航 */
+.tab-bar{position:fixed;bottom:0;width:100%;max-width:750px;height:64px;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;align-items:center;z-index:100}
+.tab-item{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:#64748b;padding:8px 16px;border-radius:8px;transition:all .2s}
+.tab-item.active{background:rgba(59,130,246,0.1);color:#3b82f6}
+.tab-item i{font-size:20px}
         
-        .page-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .share-btn {
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-        
-        /* 内容区域 */
-        .content {
-            padding: 20px;
-        }
-        
-        .main-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 24px;
-            text-align: center;
-        }
-        
-        /* 类型卡片 */
-        .type-card {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border: 1px solid #f1f5f9;
-        }
-        
-        .type-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-        
-        .type-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        
-        .type-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .type-info h2 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 4px;
-        }
-        
-        .type-info p {
-            font-size: 14px;
-            color: #64748b;
-        }
-        
-        /* 内容区块 */
-        .content-section {
-            margin-bottom: 24px;
-        }
-        
-        .section-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #3b82f6;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .section-title i {
-            font-size: 14px;
-        }
-        
-        .section-content {
-            font-size: 14px;
-            color: #475569;
-            line-height: 1.7;
-        }
-        
-        .section-content p {
-            margin-bottom: 12px;
-        }
-        
-        .section-content ul {
-            margin: 12px 0;
-            padding-left: 20px;
-        }
-        
-        .section-content li {
-            margin-bottom: 8px;
-        }
-        
-        /* 特征标签 */
-        .feature-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 16px 0;
-        }
-        
-        .tag {
-            padding: 6px 12px;
-            background: rgba(59, 130, 246, 0.1);
-            color: #3b82f6;
-            border-radius: 16px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        /* 底部导航 */
-        .tab-bar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 750px;
-            height: 64px;
-            background: white;
-            border-top: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 100;
-        }
-        
-        .tab-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            font-size: 12px;
-            color: #64748b;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        
-        .tab-item.active {
-            background: rgba(59, 130, 246, 0.1);
-            color: #3b82f6;
-        }
-        
-        .tab-item i {
-            font-size: 20px;
-        }
-        
-        /* 统计信息 */
-        .stats-section {
-            background: linear-gradient(135deg, #3b82f6, #60a5fa);
-            color: white;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-        
-        .stats-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            opacity: 0.9;
-        }
+/* 统计信息 */
+.stats-section{background:linear-gradient(135deg,#3b82f6,#60a5fa);color:#fff;border-radius:16px;padding:24px;margin-bottom:24px}
+.stats-title{font-size:18px;font-weight:600;margin-bottom:16px;text-align:center}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.stat-item{text-align:center}
+.stat-number{font-size:24px;font-weight:700;margin-bottom:4px}
+.stat-label{font-size:14px;opacity:.9}
     </style>
 </head>
 <body>

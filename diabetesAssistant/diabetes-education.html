@@ -3,31 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>糖尿病科普</title>
+    <title>糖尿病科普 - 糖尿病预治智能助手</title>
+    <meta name="description" content="糖尿病科普知识，包括糖尿病的预防、治疗和管理方法，帮助患者更好地了解和应对糖尿病">
+    <meta name="keywords" content="糖尿病科普,糖尿病知识,糖尿病预防,糖尿病治疗">
+    <meta name="author" content="糖尿病预治智能助手">
+    <link rel="preconnect" href="https://static.mastergo.com">
     <link rel="stylesheet" href="https://static.mastergo.com/static/ai/resource/html/googleapis/css2">
     <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/transition.css">
+    <link rel="preload" href="css/transition.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            min-height: 100vh;
-            color: #1e293b;
-        }
-        
-        .container {
-            max-width: 750px;
-            margin: 0 auto;
-            background: white;
-            min-height: 100vh;
-            position: relative;
-        }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#f8fafc,#e2e8f0);min-height:100vh;color:#1e293b}
+.container{max-width:750px;margin:0 auto;background:#fff;min-height:100vh;position:relative}
         
         /* 顶部导航栏 */
         .top-bar {
@@ -160,11 +147,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             font-size: 12px;
             color: #64748b;
-            padding: 10px 20px;
-            border-radius: 12px;
+            padding: 6px 8px;
+            border-radius: 8px;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -352,6 +339,7 @@
         </nav>
     </div>
     
+    <script src="js/cacheManager.js"></script>
     <script src="js/transition.js"></script>
 </body>
 </html>
