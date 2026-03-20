@@ -96,6 +96,18 @@ function navigateTo(url) {
     }
 }
 
+// 返回上一页的函数
+function goBack() {
+    if (window.pageTransition) {
+        window.pageTransition.transitionElement.classList.add('active');
+        setTimeout(() => {
+            window.history.back();
+        }, 500);
+    } else {
+        window.history.back();
+    }
+}
+
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', () => {
     window.pageTransition = new PageTransition();
