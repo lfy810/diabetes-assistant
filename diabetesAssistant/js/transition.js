@@ -2,18 +2,14 @@
 class PageTransition {
     constructor() {
         this.transitionElement = null;
+        this.isTransitioning = false;
         this.init();
     }
 
     init() {
-        // 创建转场层
         this.createTransitionElement();
-        
-        // 页面加载完成动画
-        this.pageLoadAnimation();
-        
-        // 监听页面跳转
         this.setupNavigation();
+        this.pageLoadAnimation();
     }
 
     createTransitionElement() {
@@ -21,7 +17,7 @@ class PageTransition {
         this.transitionElement.className = 'page-transition';
         this.transitionElement.innerHTML = `
             <div class="content">
-                <i class="fas fa-heartbeat" style="margin-right: 12px;"></i>
+                <i class="fas fa-heartbeat"></i>
                 <span>加载中...</span>
             </div>
         `;
@@ -30,67 +26,51 @@ class PageTransition {
 
     pageLoadAnimation() {
         setTimeout(() => {
-            document.body.classList.add('page-loaded');
-            
-            // 触发元素进入动画
-            this.triggerElementAnimations();
-        }, 100);
-    }
-
-    triggerElementAnimations() {
-        const animatedElements = document.querySelectorAll('.fade-in, .scale-in, .slide-in-left, .slide-in-right');
-        animatedElements.forEach((el, index) => {
-            setTimeout(() => {
-                el.classList.add('active');
-            }, 100 + (index * 100));
-        });
+            this.hideTransition();
+        }, 300);
     }
 
     setupNavigation() {
-        // 监听所有链接的点击
-        document.addEventListener('click', (e) => {
-            const link = e.target.closest('a');
-            if (link && link.getAttribute('href')) {
-                e.preventDefault();
-                const href = link.getAttribute('href');
-                this.navigateTo(href);
-            }
-            
-            // 监听包含跳转函数的元素
-            const elementWithNavigate = e.target.closest('[onclick*="navigateTo"], [onclick*="window.location"]');
-            if (elementWithNavigate) {
-                const onclick = elementWithNavigate.getAttribute('onclick');
-                const urlMatch = onclick.match(/["']([^"']+)["']/);
-                if (urlMatch) {
-                    e.preventDefault();
-                    this.navigateTo(urlMatch[1]);
-                }
-            }
-        });
-        
         // 监听浏览器后退/前进按钮
         window.addEventListener('popstate', () => {
-            // 页面返回时移除转场动画
-            this.transitionElement.classList.remove('active');
-            document.body.classList.add('page-loaded');
+            this.showTransition();
+            setTimeout(() => {
+                this.hideTransition();
+            }, 300);
         });
+    }
+
+    showTransition() {
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+        this.transitionElement.classList.add('active');
+    }
+
+    hideTransition() {
+        setTimeout(() => {
+            this.transitionElement.classList.remove('active');
+            setTimeout(() => {
+                this.isTransitioning = false;
+            }, 300);
+        }, 100);
     }
 
     navigateTo(url) {
-        // 显示转场动画
-        this.transitionElement.classList.add('active');
-        
-        // 延迟跳转
+        if (this.isTransitioning) return;
+        this.showTransition();
         setTimeout(() => {
             window.location.href = url;
-        }, 500);
+        }, 300);
     }
 }
 
+// 全局转场动画实例
+let pageTransition = null;
+
 // 导航到指定页面的函数
 function navigateTo(url) {
-    if (window.pageTransition) {
-        window.pageTransition.navigateTo(url);
+    if (pageTransition) {
+        pageTransition.navigateTo(url);
     } else {
         window.location.href = url;
     }
@@ -98,17 +78,11 @@ function navigateTo(url) {
 
 // 返回上一页的函数
 function goBack() {
-    if (window.pageTransition) {
-        window.pageTransition.transitionElement.classList.add('active');
-        setTimeout(() => {
-            window.history.back();
-        }, 500);
-    } else {
-        window.history.back();
-    }
+    // 直接返回，让popstate事件处理转场
+    window.history.back();
 }
 
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', () => {
-    window.pageTransition = new PageTransition();
+    pageTransition = new PageTransition();
 });

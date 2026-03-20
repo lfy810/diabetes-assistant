@@ -9,7 +9,7 @@
     z-index: 9999;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .page-transition.active {
@@ -17,17 +17,20 @@
     pointer-events: all;
 }
 
-.page-transition.content {
+.page-transition .content {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.8);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .page-transition.active .content {
@@ -35,69 +38,16 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* 页面淡入动画 */
-body {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+.page-transition .content i {
+    font-size: 24px;
+    animation: pulse 1.5s infinite;
 }
 
-body.page-loaded {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 元素进入动画 */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.fade-in.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 元素逐个进入 */
-.fade-in-delay-1 { transition-delay: 0.1s; }
-.fade-in-delay-2 { transition-delay: 0.2s; }
-.fade-in-delay-3 { transition-delay: 0.3s; }
-.fade-in-delay-4 { transition-delay: 0.4s; }
-.fade-in-delay-5 { transition-delay: 0.5s; }
-
-/* 缩放进入动画 */
-.scale-in {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.scale-in.active {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* 从左进入动画 */
-.slide-in-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide-in-left.active {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* 从右进入动画 */
-.slide-in-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide-in-right.active {
-    opacity: 1;
-    transform: translateX(0);
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
 }

@@ -2,9 +2,10 @@
 class NavbarToggle {
     constructor() {
         this.lastScrollTop = 0;
-        this.scrollThreshold = 50;
+        this.scrollThreshold = 30;
         this.topBar = null;
         this.tabBar = null;
+        this.typeNav = null;
         this.isVisible = true;
         this.init();
     }
@@ -12,8 +13,9 @@ class NavbarToggle {
     init() {
         this.topBar = document.querySelector('.top-bar');
         this.tabBar = document.querySelector('.tab-bar');
+        this.typeNav = document.querySelector('.type-nav');
         
-        if (this.topBar || this.tabBar) {
+        if (this.topBar || this.tabBar || this.typeNav) {
             window.addEventListener('scroll', this.handleScroll.bind(this));
         }
     }
@@ -48,6 +50,10 @@ class NavbarToggle {
             this.tabBar.style.transform = 'translateY(100%)';
             this.tabBar.style.transition = 'transform 0.3s ease';
         }
+        if (this.typeNav) {
+            this.typeNav.style.transform = 'translateY(-100%)';
+            this.typeNav.style.transition = 'transform 0.3s ease';
+        }
     }
 
     showNavbars() {
@@ -58,6 +64,10 @@ class NavbarToggle {
         if (this.tabBar) {
             this.tabBar.style.transform = 'translateY(0)';
             this.tabBar.style.transition = 'transform 0.3s ease';
+        }
+        if (this.typeNav) {
+            this.typeNav.style.transform = 'translateY(0)';
+            this.typeNav.style.transition = 'transform 0.3s ease';
         }
     }
 }
