@@ -126,6 +126,7 @@
             overflow: hidden;
             position: relative;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            background-color: #0369a1;
         }
         
         .carousel {
@@ -592,11 +593,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
-            font-size: 14px;
+            gap: 4px;
+            font-size: 12px;
             color: #64748b;
-            padding: 8px 16px;
-            border-radius: 12px;
+            padding: 6px 8px;
+            border-radius: 8px;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -682,7 +683,7 @@
                         <img src="img/doc1.jpg" alt="张伟明" class="w-full h-full object-cover rounded-full">
                     </div>
                     <div class="doctor-name">张伟明</div>
-                    <div class="doctor-dept">内分泌科 主任医师</div>
+                    <div class="doctor-dept">内分泌科<br>主任医师</div>
                     <button class="consult-btn">立即咨询</button>
                 </div>
                 <div class="doctor-card fade-in fade-in-delay-2" onclick="navigateTo('doctor-li.html')">
@@ -690,7 +691,7 @@
                         <img src="img/doc2.png" alt="李雅琴" class="w-full h-full object-cover rounded-full">
                     </div>
                     <div class="doctor-name">李雅琴</div>
-                    <div class="doctor-dept">内分泌科 副主任医师</div>
+                    <div class="doctor-dept">内分泌科<br>副主任医师</div>
                     <button class="consult-btn">立即咨询</button>
                 </div>
                 <div class="doctor-card fade-in fade-in-delay-3" onclick="navigateTo('doctor-wang.html')">
@@ -698,7 +699,7 @@
                         <img src="img/doc3.png" alt="王建国" class="w-full h-full object-cover rounded-full">
                     </div>
                     <div class="doctor-name">王建国</div>
-                    <div class="doctor-dept">内分泌科 主治医师</div>
+                    <div class="doctor-dept">内分泌科<br>主治医师</div>
                     <button class="consult-btn">立即咨询</button>
                 </div>
             </div>
@@ -1073,8 +1074,41 @@
             startSlideInterval();
         }
         
+        // 添加滑动事件处理
+        function initSwipeEvents() {
+            const carousel = document.querySelector('.carousel');
+            let startX, endX;
+            
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            
+            carousel.addEventListener('touchend', (e) => {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50; // 滑动阈值
+                const diff = startX - endX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // 向左滑动，下一张
+                        changeSlide(1);
+                    } else {
+                        // 向右滑动，上一张
+                        changeSlide(-1);
+                    }
+                }
+            }
+        }
+
         // 页面加载完成后初始化轮播
-        document.addEventListener('DOMContentLoaded', initCarousel);
+        document.addEventListener('DOMContentLoaded', () => {
+            initCarousel();
+            initSwipeEvents();
+        });
     </script>
     <script src="js/transition.js"></script>
 </body>
