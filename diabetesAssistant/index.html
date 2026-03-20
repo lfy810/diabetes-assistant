@@ -1093,11 +1093,13 @@
         function initSwipeEvents() {
             const carouselContainer = document.querySelector('.carousel-container');
             const carouselInner = document.querySelector('.carousel-inner');
-            let startX, endX, isDragging = false, currentTranslate = 0;
+            let startX, lastX, isDragging = false, currentTranslate = 0, totalDiff = 0;
             
             carouselContainer.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
+                lastX = startX;
                 isDragging = true;
+                totalDiff = 0;
                 // 暂停自动轮播
                 clearInterval(slideInterval);
                 // 获取当前的transform值
@@ -1114,26 +1116,25 @@
             carouselContainer.addEventListener('touchmove', (e) => {
                 if (!isDragging) return;
                 e.preventDefault(); // 防止页面滚动
-                endX = e.touches[0].clientX;
-                const diff = startX - endX;
+                const currentX = e.touches[0].clientX;
+                const diff = lastX - currentX;
+                totalDiff += diff;
+                lastX = currentX;
                 // 实时更新轮播图位置
-                carouselInner.style.transform = `translateX(${currentTranslate - diff}px)`;
+                carouselInner.style.transform = `translateX(${currentTranslate - totalDiff}px)`;
             });
             
             carouselContainer.addEventListener('touchend', (e) => {
                 if (!isDragging) return;
                 isDragging = false;
-                endX = e.changedTouches[0].clientX;
                 handleSwipe();
             });
             
             function handleSwipe() {
                 const swipeThreshold = 50; // 滑动阈值
-                const diff = startX - endX;
-                const carouselWidth = carouselContainer.offsetWidth;
                 
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0) {
+                if (Math.abs(totalDiff) > swipeThreshold) {
+                    if (totalDiff > 0) {
                         // 向左滑动，下一张
                         changeSlide(1);
                     } else {
