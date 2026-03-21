@@ -157,10 +157,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
     background: linear-gradient(135deg,#f0f9ff,#e0f2fe);
 }
 
+.carousel-item:hover img,
 .carousel-item:active img {
     transform: scale(1.05);
 }
@@ -290,11 +291,11 @@
 .doctor-list::-webkit-scrollbar{display:none}
 .doctor-card{flex:0 0 120px;background:linear-gradient(135deg,#fff,#f8fafc);border-radius:8px;padding:12px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(3,105,161,0.1);cursor:pointer;transition:all .3s ease;position:relative;overflow:hidden}
 .doctor-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0369a1,#0ea5e9);opacity:0;transition:opacity .3s ease}
-.doctor-card:active{transform:translateY(-4px);box-shadow:0 12px 32px rgba(3,105,161,0.15);border-color:#0ea5e9}
-.doctor-card:active::before{opacity:1}
-.doctor-avatar{width:50px;height:50px;border-radius:50%;margin:0 auto 8px;overflow:hidden;border:3px solid rgba(3,105,161,0.1);transition:all .3s ease}
-.doctor-card:active .doctor-avatar{border-color:#0ea5e9;transform:scale(1.05)}
-.doctor-avatar img{width:100%;height:100%;object-fit:cover}
+.doctor-card:hover,.doctor-card:active{transform:translateY(-4px);box-shadow:0 12px 32px rgba(3,105,161,0.15);border-color:#0ea5e9}
+.doctor-card:hover::before,.doctor-card:active::before{opacity:1}
+.doctor-avatar{width:50px;height:50px;border-radius:50%;margin:0 auto 8px;overflow:hidden;border:3px solid rgba(3,105,161,0.1);transition:all .3s ease;animation:ripple 8s ease-in-out infinite}
+.doctor-card:hover .doctor-avatar,.doctor-card:active .doctor-avatar{border-color:#0ea5e9;transform:scale(1.05)}
+.doctor-avatar img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
 .doctor-name{font-size:14px;font-weight:600;text-align:center;margin-bottom:6px;color:#0369a1}
 .doctor-dept{font-size:12px;color:#475569;text-align:center;margin-bottom:12px;font-weight:500}
 .consult-btn{width:100%;padding:8px;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s ease;box-shadow:0 4px 16px rgba(3,105,161,0.3);position:relative;overflow:hidden}
@@ -306,11 +307,11 @@
 .article-list{padding:0 24px;margin-bottom:32px}
 .article-card{background:linear-gradient(135deg,#fff,#f8fafc);border-radius:12px;padding:16px;margin-bottom:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(3,105,161,0.1);display:flex;gap:16px;cursor:pointer;transition:all .3s ease;position:relative;overflow:hidden}
 .article-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,#0369a1,#0ea5e9);opacity:0;transition:opacity .3s ease}
-.article-card:active{transform:translateY(-4px);box-shadow:0 12px 32px rgba(3,105,161,0.15);border-color:#0ea5e9}
-.article-card:active::before{opacity:1}
-.article-image{width:80px;height:60px;border-radius:8px;overflow:hidden;flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,0.1)}
-.article-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
-.article-card:active .article-image img{transform:scale(1.05)}
+.article-card:hover,.article-card:active{transform:translateY(-4px);box-shadow:0 12px 32px rgba(3,105,161,0.15);border-color:#0ea5e9}
+.article-card:hover::before,.article-card:active::before{opacity:1}
+.article-image{width:80px;height:60px;border-radius:8px;overflow:hidden;flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,0.1);transition:all .3s ease;animation:ripple 8s ease-in-out infinite}
+.article-card:hover .article-image{box-shadow:0 8px 24px rgba(3,105,161,0.2)}
+.article-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .article-content{flex:1}
 .article-title{font-size:16px;font-weight:600;color:#0369a1;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
 .article-summary{font-size:14px;color:#475569;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
@@ -321,11 +322,11 @@
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .type-card{background:linear-gradient(135deg,#fff,#f8fafc);border-radius:12px;padding:16px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.08);border:1px solid rgba(3,105,161,0.1);cursor:pointer;transition:all .3s ease;position:relative;overflow:hidden}
 .type-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0369a1,#0ea5e9);opacity:0;transition:opacity .3s ease}
-.type-card:active{transform:translateY(-4px);box-shadow:0 12px 32px rgba(3,105,161,0.15);border-color:#0ea5e9}
-.type-card:active::before{opacity:1}
-.type-image{width:70px;height:70px;border-radius:50%;margin:0 auto 12px;overflow:hidden;border:3px solid rgba(3,105,161,0.1);transition:all .3s ease}
-.type-card:active .type-image{border-color:#0ea5e9;transform:scale(1.05)}
-.type-image img{width:100%;height:100%;object-fit:cover}
+.type-card:hover,.type-card:active{transform:translateY(-4px);box-shadow:0 12px 32px rgba(3,105,161,0.15);border-color:#0ea5e9}
+.type-card:hover::before,.type-card:active::before{opacity:1}
+.type-image{width:70px;height:70px;border-radius:50%;margin:0 auto 12px;overflow:hidden;border:3px solid rgba(3,105,161,0.1);transition:all .3s ease;animation:ripple 8s ease-in-out infinite}
+.type-card:hover .type-image,.type-card:active .type-image{border-color:#0ea5e9;transform:scale(1.05)}
+.type-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
 .type-name{font-size:16px;font-weight:600;color:#0369a1;margin-bottom:8px}
 .type-desc{font-size:14px;color:#475569;font-weight:500}
         
@@ -335,6 +336,41 @@
 .tab-item.active{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;box-shadow:0 4px 16px rgba(3,105,161,0.3)}
 .tab-item i{font-size:22px;transition:transform .3s ease}
 .tab-item:active i{transform:translateY(-2px)}
+        
+        /* 前后浮动动画 */
+        @keyframes float {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+        }
+        
+        /* 浅蓝到白色涟漪动画 - 柔和呼吸效果 */
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                box-shadow: 
+                    0 0 15px rgba(14, 165, 233, 0.6),
+                    0 0 30px rgba(14, 165, 233, 0.3),
+                    0 0 45px rgba(14, 165, 233, 0.1);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 
+                    0 0 25px rgba(255, 255, 255, 0.9),
+                    0 0 50px rgba(255, 255, 255, 0.5),
+                    0 0 75px rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 
+                    0 0 15px rgba(14, 165, 233, 0.6),
+                    0 0 30px rgba(14, 165, 233, 0.3),
+                    0 0 45px rgba(14, 165, 233, 0.1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -360,15 +396,15 @@
             <section class="carousel-container">
                 <div class="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active" onclick="navigateTo('diabetes-education.html')">
+                        <div class="carousel-item active" onclick="window.location.href='diabetes-education.html'">
                             <img src="img/lb1.png" alt="糖尿病预防" loading="lazy">
                             <div class="carousel-text">了解糖尿病预防</div>
                         </div>
-                        <div class="carousel-item" onclick="navigateTo('article.html')">
+                        <div class="carousel-item" onclick="window.location.href='article.html'">
                             <img src="img/lb2.png" alt="健康饮食" loading="lazy">
                             <div class="carousel-text">健康饮食管理</div>
                         </div>
-                        <div class="carousel-item" onclick="navigateTo('glucose-monitoring.html')">
+                        <div class="carousel-item" onclick="window.location.href='glucose-monitoring.html'">
                             <img src="img/lb3.jpeg" alt="血糖监测" loading="lazy">
                             <div class="carousel-text">科学血糖监测</div>
                         </div>
@@ -395,10 +431,10 @@
         <section>
             <div class="section-header">
                 <h2 class="section-title fade-in">专业医师团队</h2>
-                <button class="more-btn fade-in" onclick="navigateTo('doctors.html')">更多</button>
+                <button class="more-btn fade-in" onclick="window.location.href='doctors.html'">更多</button>
             </div>
             <div class="doctor-list">
-                <div class="doctor-card fade-in fade-in-delay-1" onclick="navigateTo('doctor-zhang.html')">
+                <div class="doctor-card fade-in fade-in-delay-1" onclick="window.location.href='doctor-zhang.html'">
                     <div class="doctor-avatar">
                         <img src="img/doc1.jpg" alt="张伟明" class="w-full h-full object-cover rounded-full" loading="lazy">
                     </div>
@@ -406,7 +442,7 @@
                     <div class="doctor-dept">内分泌科<br>主任医师</div>
                     <button class="consult-btn">立即咨询</button>
                 </div>
-                <div class="doctor-card fade-in fade-in-delay-2" onclick="navigateTo('doctor-li.html')">
+                <div class="doctor-card fade-in fade-in-delay-2" onclick="window.location.href='doctor-li.html'">
                     <div class="doctor-avatar">
                         <img src="img/doc2.png" alt="李雅琴" class="w-full h-full object-cover rounded-full" loading="lazy">
                     </div>
@@ -414,7 +450,7 @@
                     <div class="doctor-dept">内分泌科<br>副主任医师</div>
                     <button class="consult-btn">立即咨询</button>
                 </div>
-                <div class="doctor-card fade-in fade-in-delay-3" onclick="navigateTo('doctor-wang.html')">
+                <div class="doctor-card fade-in fade-in-delay-3" onclick="window.location.href='doctor-wang.html'">
                     <div class="doctor-avatar">
                         <img src="img/doc3.png" alt="王建国" class="w-full h-full object-cover rounded-full" loading="lazy">
                     </div>
@@ -429,10 +465,10 @@
         <section>
             <div class="section-header">
                 <h2 class="section-title fade-in">健康科普</h2>
-                <button class="more-btn fade-in" onclick="navigateTo('articles.html')">更多</button>
+                <button class="more-btn fade-in" onclick="window.location.href='articles.html'">更多</button>
             </div>
             <div class="article-list">
-                <div class="article-card fade-in fade-in-delay-1" onclick="navigateTo('article.html')">
+                <div class="article-card fade-in fade-in-delay-1" onclick="window.location.href='article.html'">
                     <div class="article-image">
                         <img src="img/a1.jpg" alt="饮食管理" class="w-full h-full object-cover rounded-lg" loading="lazy">
                     </div>
@@ -445,7 +481,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="article-card fade-in fade-in-delay-2" onclick="navigateTo('exercise.html')">
+                <div class="article-card fade-in fade-in-delay-2" onclick="window.location.href='exercise.html'">
                     <div class="article-image">
                         <img src="img/a2.jpg" alt="运动方式" class="w-full h-full object-cover rounded-lg" loading="lazy">
                     </div>
@@ -458,7 +494,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="article-card fade-in fade-in-delay-3" onclick="navigateTo('glucose-monitoring.html')">
+                <div class="article-card fade-in fade-in-delay-3" onclick="window.location.href='glucose-monitoring.html'">
                     <div class="article-image">
                         <img src="img/a3.jpg" alt="血糖监测" class="w-full h-full object-cover rounded-lg" loading="lazy">
                     </div>
@@ -478,32 +514,32 @@
         <section>
             <div class="section-header">
                 <h2 class="section-title fade-in">了解糖尿病</h2>
-                <button class="more-btn fade-in" onclick="navigateTo('type1.html')">查看全部</button>
+                <button class="more-btn fade-in" onclick="window.location.href='type1.html'">查看全部</button>
             </div>
             <div class="diabetes-types">
                 <div class="type-grid">
-                    <div class="type-card fade-in fade-in-delay-1" onclick="navigateTo('type1.html')">
+                    <div class="type-card fade-in fade-in-delay-1" onclick="window.location.href='type1.html'">
                         <div class="type-image">
                             <img src="img/tnb1.png" alt="1型糖尿病" class="w-full h-full object-cover rounded-full" loading="lazy">
                         </div>
                         <div class="type-name">1型糖尿病</div>
                         <div class="type-desc">胰岛素依赖型糖尿病</div>
                     </div>
-                    <div class="type-card fade-in fade-in-delay-2" onclick="navigateTo('type2.html')">
+                    <div class="type-card fade-in fade-in-delay-2" onclick="window.location.href='type2.html'">
                         <div class="type-image">
                             <img src="img/tnb2.png" alt="2型糖尿病" class="w-full h-full object-cover rounded-full" loading="lazy">
                         </div>
                         <div class="type-name">2型糖尿病</div>
                         <div class="type-desc">最常见的糖尿病类型</div>
                     </div>
-                    <div class="type-card fade-in fade-in-delay-3" onclick="navigateTo('type-pregnancy.html')">
+                    <div class="type-card fade-in fade-in-delay-3" onclick="window.location.href='type-pregnancy.html'">
                         <div class="type-image">
                             <img src="img/tnb3.png" alt="妊娠糖尿病" class="w-full h-full object-cover rounded-full" loading="lazy">
                         </div>
                         <div class="type-name">妊娠糖尿病</div>
                         <div class="type-desc">孕期发生的血糖异常</div>
                     </div>
-                    <div class="type-card fade-in fade-in-delay-4" onclick="navigateTo('type-other.html')">
+                    <div class="type-card fade-in fade-in-delay-4" onclick="window.location.href='type-other.html'">
                         <div class="type-image">
                             <img src="img/tnb4.png" alt="其他类型" class="w-full h-full object-cover rounded-full" loading="lazy">
                         </div>
@@ -563,7 +599,7 @@ function handleSearch(event){
     if(event.key==='Enter'){
         const keyword=event.target.value.trim();
         if(keyword){
-            navigateTo(`search-results.html?keyword=${encodeURIComponent(keyword)}`);
+            window.location.href = `search-results.html?keyword=${encodeURIComponent(keyword)}`;
         }
     }
 }
@@ -601,7 +637,7 @@ async function handleRealTimeSearch(event){
                 const item=document.createElement('div');
                 item.className='suggestion-item';
                 item.textContent=suggestion.title;
-                item.onclick=()=>navigateTo(suggestion.url);
+                item.onclick=()=>window.location.href=suggestion.url;
                 suggestionsContainer.appendChild(item);
             });
             suggestionsContainer.style.display='block';
@@ -719,7 +755,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
     </script>
     <script src="js/cacheManager.js" defer></script>
-    <script src="js/transition.js" defer></script>
+
     <script src="js/navbarToggle.js" defer></script>
 </body>
 </html>

@@ -178,7 +178,7 @@ body{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',Ro
     <div class="container">
         <!-- 顶部导航栏 -->
         <header class="top-bar">
-            <div class="back-btn" onclick="navigateTo('index.html')">
+            <div class="back-btn" onclick="handleBack()">
                 <i class="fas fa-arrow-left"></i>
             </div>
             <div class="page-title">健康科普文章</div>
@@ -191,7 +191,7 @@ body{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',Ro
             
             <div class="article-list">
                 <!-- 饮食管理文章 -->
-                <div class="article-card" onclick="navigateTo('article.html')">
+                <div class="article-card" onclick="window.location.href='article.html'">
                     <div class="article-image">
                         <img src="img/a1.jpg" alt="饮食管理">
                     </div>
@@ -236,7 +236,7 @@ body{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',Ro
                 </div>
                 
                 <!-- 运动方式文章 -->
-                <div class="article-card" onclick="navigateTo('exercise.html')">
+                <div class="article-card" onclick="window.location.href='exercise.html'">
                     <div class="article-image">
                         <img src="img/a2.jpg" alt="运动方式">
                     </div>
@@ -281,7 +281,7 @@ body{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',Ro
                 </div>
                 
                 <!-- 血糖监测文章 -->
-                <div class="article-card" onclick="navigateTo('glucose-monitoring.html')">
+                <div class="article-card" onclick="window.location.href='glucose-monitoring.html'">
                     <div class="article-image">
                         <img src="img/a3.jpg" alt="血糖监测">
                     </div>
@@ -329,7 +329,7 @@ body{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',Ro
         
         <!-- 底部导航 -->
         <nav class="tab-bar">
-            <div class="tab-item active" onclick="navigateTo('index.html')">
+            <div class="tab-item active" onclick="window.location.href='index.html'">
                 <i class="fas fa-home"></i>
                 <span>首页</span>
             </div>
@@ -352,8 +352,18 @@ body{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',Ro
         </nav>
     </div>
     
+    <script>
+        // 处理返回逻辑
+        function handleBack() {
+            // 如果历史记录只有当前页面，则跳转到首页
+            if (window.history.length <= 2) {
+                window.location.href = 'index.html';
+            } else {
+                window.history.back();
+            }
+        }
+    </script>
     <script src="js/cacheManager.js"></script>
-    <script src="js/transition.js"></script>
     <script src="js/navbarToggle.js"></script>
 </body>
 </html>
