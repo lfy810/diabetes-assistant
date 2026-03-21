@@ -136,18 +136,24 @@ class DataService {
                     id: 1,
                     name: '张伟明',
                     title: '内分泌科主任医师',
+                    image: 'img/doc1.jpg',
+                    hospital: '北京协和医院',
                     url: 'doctor-zhang.html'
                 },
                 {
                     id: 2,
                     name: '李雅琴',
                     title: '内分泌科副主任医师',
+                    image: 'img/doc2.png',
+                    hospital: '北京协和医院',
                     url: 'doctor-li.html'
                 },
                 {
                     id: 3,
                     name: '王建国',
                     title: '内分泌科主治医师',
+                    image: 'img/doc3.png',
+                    hospital: '北京协和医院',
                     url: 'doctor-wang.html'
                 }
             ],
@@ -155,21 +161,29 @@ class DataService {
                 {
                     id: 1,
                     name: '1型糖尿病',
+                    image: 'img/tnb1.png',
+                    desc: '胰岛素依赖型糖尿病',
                     url: 'type1.html'
                 },
                 {
                     id: 2,
                     name: '2型糖尿病',
+                    image: 'img/tnb2.png',
+                    desc: '最常见的糖尿病类型',
                     url: 'type2.html'
                 },
                 {
                     id: 3,
                     name: '妊娠糖尿病',
+                    image: 'img/tnb3.png',
+                    desc: '孕期发生的血糖异常',
                     url: 'type-pregnancy.html'
                 },
                 {
                     id: 4,
                     name: '其他类型',
+                    image: 'img/tnb4.png',
+                    desc: '特殊类型的糖尿病',
                     url: 'type-other.html'
                 }
             ]
