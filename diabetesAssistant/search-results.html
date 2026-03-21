@@ -71,7 +71,7 @@ body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:line
     <div class="container">
         <!-- 顶部导航栏 -->
         <header class="top-bar">
-            <div class="back-btn" onclick="window.location.href='index.html'">
+            <div class="back-btn" onclick="window.history.back()">
                 <i class="fas fa-arrow-left"></i>
             </div>
             <div class="page-title">搜索结果</div>
@@ -130,7 +130,7 @@ body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:line
     
     <!-- 底部导航 -->
     <nav class="tab-bar">
-        <div class="tab-item" onclick="navigateTo('index.html')">
+        <div class="tab-item" onclick="window.location.href='index.html'">
             <i class="fas fa-home"></i>
             <span>首页</span>
         </div>
@@ -231,7 +231,7 @@ body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:line
                     item.className = 'suggestion-item';
                     item.textContent = suggestion.title;
                     item.onclick = () => {
-                        navigateTo(suggestion.url);
+                        window.location.href = suggestion.url;
                     };
                     suggestionsContainer.appendChild(item);
                 });
@@ -343,7 +343,7 @@ body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:line
                     </div>
                 `;
                 item.addEventListener('click', function() {
-                    navigateTo(this.getAttribute('data-url'));
+                    window.location.href = this.getAttribute('data-url');
                 });
                 container.appendChild(item);
             });
@@ -389,7 +389,7 @@ body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:line
                     </div>
                 `;
                 item.addEventListener('click', function() {
-                    navigateTo(this.getAttribute('data-url'));
+                    window.location.href = this.getAttribute('data-url');
                 });
                 container.appendChild(item);
             });
@@ -435,7 +435,7 @@ body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:line
                     </div>
                 `;
                 item.addEventListener('click', function() {
-                    navigateTo(this.getAttribute('data-url'));
+                    window.location.href = this.getAttribute('data-url');
                 });
                 container.appendChild(item);
             });

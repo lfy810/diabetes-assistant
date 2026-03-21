@@ -69,7 +69,7 @@ body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:line
     <div class="container">
         <!-- 顶部导航栏 -->
         <header class="top-bar">
-            <div class="back-btn" onclick="window.location.href='diabetes-types.html'">
+            <div class="back-btn" onclick="window.history.back()">
                 <i class="fas fa-arrow-left"></i>
             </div>
             <div class="page-title">糖尿病类型</div>
@@ -80,10 +80,10 @@ body{font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;background:line
         
         <!-- 类型导航 -->
         <div class="type-nav">
-            <div class="nav-item active" onclick="navigateTo('type1.html')">1型糖尿病</div>
-            <div class="nav-item" onclick="navigateTo('type2.html')">2型糖尿病</div>
-            <div class="nav-item" onclick="navigateTo('type-pregnancy.html')">妊娠糖尿病</div>
-            <div class="nav-item" onclick="navigateTo('type-other.html')">其他类型</div>
+            <div class="nav-item active" onclick="window.location.href='type1.html'">1型糖尿病</div>
+            <div class="nav-item" onclick="window.location.href='type2.html'">2型糖尿病</div>
+            <div class="nav-item" onclick="window.location.href='type-pregnancy.html'">妊娠糖尿病</div>
+            <div class="nav-item" onclick="window.location.href='type-other.html'">其他类型</div>
         </div>
         
         <!-- 内容区域 -->
